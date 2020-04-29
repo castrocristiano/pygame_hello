@@ -19,6 +19,7 @@ def main():
     cor_branca = (255, 255, 255)
     cor_azul = (108, 194, 236)
     cor_verde = (54, 182, 112)
+    cor_vermelha =(255, 0, 0)
     '''
         Criando uma superfice que terá a cor azul.
         Os parâmetros definem a área ocupada pela superfice.
@@ -29,11 +30,19 @@ def main():
     # Mesmo caso anterior, mas esta superfice será verde
     sup_verde = pygame.Surface((100, 100))
     sup_verde.fill(cor_verde)
+
+    ret = pygame.Rect(10, 10, 45, 45)
+
+
     # Mantém a tela aberta até clicar no botão de fechar. 
     while sair == False:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 sair = True
+
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                ret = ret.move(10, 10)
+
         # Aqui o relógio define que a tela atualizará a 27 frames por segundo
         relogio.tick(27)
         # Define a cor de fundo da tela como branca
@@ -41,6 +50,9 @@ def main():
         # Coloca as superfices na tela nas respectivas posições
         tela.blit(sup_azul, [50, 50])
         tela.blit(sup_verde, [250, 100])
+
+        pygame.draw.rect(tela, cor_vermelha, ret)
+
         # Atualiza a tela
         pygame.display.update()
     # Encerra 
