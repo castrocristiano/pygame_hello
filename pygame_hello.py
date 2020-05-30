@@ -1,3 +1,4 @@
+#https://www.pygame.org
 import pygame
 
 
@@ -39,9 +40,27 @@ def main():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 sair = True
-
+            '''
             if event.type == pygame.MOUSEBUTTONDOWN:
                 ret = ret.move(10, 10)
+            
+            if event.type == pygame.MOUSEMOTION:
+                ret = ret.move(-10, -10)
+            '''
+            # https://www.pygame.org/docs/ref/key.html
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_LEFT:
+                    ret.move_ip(-10, 0)
+                if event.key == pygame.K_RIGHT:
+                    ret.move_ip(10, 0)
+                if event.key == pygame.K_UP:
+                    ret.move_ip(0, -10)
+                if event.key == pygame.K_DOWN:
+                    ret.move_ip(0, 10)
+                if event.key == pygame.K_SPACE:
+                    ret.move_ip(10, 10)
+                if event.key == pygame.K_BACKSPACE:
+                    ret.move_ip(-10, -10)
 
         # Aqui o relógio define que a tela atualizará a 27 frames por segundo
         relogio.tick(27)
