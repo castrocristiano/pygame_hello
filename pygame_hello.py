@@ -68,7 +68,12 @@ def main():
         tela.fill(cor_branca)
         # Coloca as superfices na tela nas respectivas posições
         tela.blit(sup_azul, [50, 50])
-        tela.blit(sup_verde, [250, 100])
+        tela.blit(sup_verde, [250, 50])
+        tela.blit(sup_verde, [250, 150])
+
+        (ret.left, ret.top) = pygame.mouse.get_pos()
+        ret.left -= ret.width/2
+        ret.top -= ret.height/2
 
         pygame.draw.rect(tela, cor_vermelha, ret)
 
