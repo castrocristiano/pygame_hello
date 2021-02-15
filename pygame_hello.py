@@ -40,6 +40,14 @@ def main():
     ret2 = pygame.Rect(50, 50, 80, 50)
     colisao = Colisao(ret)
 
+    # Inicializando a lib de fontes
+    pygame.font.init()
+
+    # Pega a fonte padrão
+    font_padrao = pygame.font.get_default_font()
+    font_perdeu = pygame.font.SysFont(font_padrao, 45)
+    font_ganhou = pygame.font.SysFont(font_padrao, 30)
+
     # Mantém a tela aberta até clicar no botão de fechar. 
     while sair == False:
         for event in pygame.event.get():
@@ -61,6 +69,8 @@ def main():
         ret.top -= ret.height / 2
 
         if colisao.verificar_colisao(ret2):
+            texto = font_perdeu.render('COLIDIU', 1, (cor_vermelha))
+            tela.blit(texto, (150, 150))
             colisao.voltar_para_posicao_anterior()
 
         pygame.draw.rect(tela, cor_vermelha, ret)
