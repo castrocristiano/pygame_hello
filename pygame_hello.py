@@ -42,7 +42,7 @@ def main():
     colisao = Colisao(ret)
 
     # Inicializando a lib de fontes
-    pygame.font.init()
+    # pygame.font.init()
 
     # Mantém a tela aberta até clicar no botão de fechar. 
     while sair == False:
