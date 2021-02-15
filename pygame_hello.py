@@ -1,6 +1,7 @@
 # https://www.pygame.org
 import pygame
 # Variáveis que contém a definição de cores
+from colisao import Colisao
 from cores import cor_azul, cor_verde, cor_branca, cor_vermelha, cor_rosa
 
 
@@ -37,6 +38,7 @@ def main():
 
     ret = pygame.Rect(10, 10, 45, 45)
     ret2 = pygame.Rect(50, 50, 80, 50)
+    colisao = Colisao(ret)
 
     # Mantém a tela aberta até clicar no botão de fechar. 
     while sair == False:
@@ -51,14 +53,15 @@ def main():
 
         configura_tela(sup_azul, sup_verde, tela)
 
-        (x_ant, y_ant) = (ret.left, ret.top)
+        colisao.set_posicao_anterior(ret.left, ret.top)
+
         (ret.left, ret.top) = pygame.mouse.get_pos()
         # Segue o mouse
         ret.left -= ret.width / 2
         ret.top -= ret.height / 2
 
-        if ret.colliderect(ret2):
-            (ret.left, ret.top) = (x_ant, y_ant)
+        if colisao.verificar_colisao(ret2):
+            colisao.voltar_para_posicao_anterior()
 
         pygame.draw.rect(tela, cor_vermelha, ret)
         pygame.draw.rect(tela, cor_rosa, ret2)
