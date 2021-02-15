@@ -1,9 +1,11 @@
-#https://www.pygame.org
+# https://www.pygame.org
 import pygame
+# Variáveis que contém a definição de cores
+from cores import cor_azul, cor_verde, cor_branca, cor_vermelha, cor_rosa
 
 
 def main():
-    #Iniciando a lib Pygame
+    # Iniciando a lib Pygame
     pygame.init()
 
     # Definindo o título da janela
@@ -20,13 +22,6 @@ def main():
 
     # Variável para controlar o evento de sair
     sair = False
-
-    # Variáveis que contém a definição de cores
-    cor_branca = (255, 255, 255)
-    cor_azul = (108, 194, 236)
-    cor_verde = (54, 182, 112)
-    cor_vermelha = (255, 0, 0)
-    cor_rosa = (253, 227, 226)
 
     '''
         Criando uma superfice que terá a cor azul.
@@ -49,43 +44,21 @@ def main():
             if event.type == pygame.QUIT:
                 sair = True
 
-            if event.type == pygame.MOUSEBUTTONDOWN:
-                pygame.mouse.set_pos(150, 150)
-
-            # if event.type == pygame.MOUSEMOTION:
-            #     ret = ret.move(-10, -10)
-            #
-
-            # https://www.pygame.org/docs/ref/key.html
-            if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_LEFT:
-                    ret.move_ip(-10, 0)
-                if event.key == pygame.K_RIGHT:
-                    ret.move_ip(10, 0)
-                if event.key == pygame.K_UP:
-                    ret.move_ip(0, -10)
-                if event.key == pygame.K_DOWN:
-                    ret.move_ip(0, 10)
-                if event.key == pygame.K_SPACE:
-                    ret.move_ip(10, 10)
-                if event.key == pygame.K_BACKSPACE:
-                    ret.move_ip(-10, -10)
+        move_ret_por_botoes(event, ret)
 
         # Aqui o relógio define que a tela atualizará a 27 frames por segundo
         relogio.tick(27)
 
-        # Define a cor de fundo da tela como branca
-        tela.fill(cor_branca)
+        configura_tela(sup_azul, sup_verde, tela)
 
-        # Coloca as superfices na tela nas respectivas posições
-        tela.blit(sup_azul, [50, 50])
-        tela.blit(sup_verde, [250, 50])
-        tela.blit(sup_verde, [250, 150])
-
+        (x_ant, y_ant) = (ret.left, ret.top)
         (ret.left, ret.top) = pygame.mouse.get_pos()
+        # Segue o mouse
+        ret.left -= ret.width / 2
+        ret.top -= ret.height / 2
 
-        ret.left -= ret.width/2
-        ret.top -= ret.height/2
+        if ret.colliderect(ret2):
+            (ret.left, ret.top) = (x_ant, y_ant)
 
         pygame.draw.rect(tela, cor_vermelha, ret)
         pygame.draw.rect(tela, cor_rosa, ret2)
@@ -95,5 +68,44 @@ def main():
 
     # Encerra 
     pygame.quit()
+
+
+def configura_tela(sup_azul, sup_verde, tela):
+    # Define a cor de fundo da tela como branca
+    tela.fill(cor_branca)
+
+    # Coloca as superfices na tela nas respectivas posições
+    tela.blit(sup_azul, [50, 50])
+    tela.blit(sup_verde, [250, 50])
+    tela.blit(sup_verde, [250, 150])
+
+
+def move_ret_por_botoes(event, ret):
+    """
+
+        https://www.pygame.org/docs/ref/key.html
+    """
+
+    if event.type == pygame.MOUSEBUTTONDOWN:
+        pygame.mouse.set_pos(150, 150)
+
+    # if event.type == pygame.MOUSEMOTION:
+    #     ret = ret.move(-10, -10)
+    #
+
+    if event.type == pygame.KEYDOWN:
+        if event.key == pygame.K_LEFT:
+            ret.move_ip(-10, 0)
+        if event.key == pygame.K_RIGHT:
+            ret.move_ip(10, 0)
+        if event.key == pygame.K_UP:
+            ret.move_ip(0, -10)
+        if event.key == pygame.K_DOWN:
+            ret.move_ip(0, 10)
+        if event.key == pygame.K_SPACE:
+            ret.move_ip(10, 10)
+        if event.key == pygame.K_BACKSPACE:
+            ret.move_ip(-10, -10)
+
 
 main()
