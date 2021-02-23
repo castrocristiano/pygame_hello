@@ -1,5 +1,6 @@
 # https://www.pygame.org
 import pygame
+import sons
 # Variáveis que contém a definição de cores
 from colisao import Colisao
 from cores import cor_azul, cor_verde, cor_branca, cor_vermelha, cor_rosa
@@ -67,6 +68,7 @@ def main():
         if colisao.verificar_colisao(ret2):
             texto = fonte_perdeu.render('COLIDIU', 1, (cor_vermelha))
             tela.blit(texto, (150, 150))
+            sons.get_explodir().play()
             colisao.voltar_para_posicao_anterior()
 
         pygame.draw.rect(tela, cor_vermelha, ret)
