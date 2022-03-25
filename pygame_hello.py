@@ -66,7 +66,7 @@ def main():
         ret.top -= ret.height / 2
 
         if colisao.verificar_colisao(ret2):
-            texto = fonte_perdeu.render('COLIDIU', 1, (cor_vermelha))
+            texto = fonte_perdeu.render('COLIDIU', 1, cor_vermelha)
             tela.blit(texto, (150, 150))
             sons.get_explodir().play()
             colisao.voltar_para_posicao_anterior()
