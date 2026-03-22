@@ -1,8 +1,8 @@
 
 
 # Variáveis que contém a definição de cores
-cor_branca = (255, 255, 255)
-cor_azul = (108, 194, 236)
-cor_verde = (54, 182, 112)
-cor_vermelha = (255, 0, 0)
-cor_rosa = (253, 227, 226)
+COR_BRANCA = (255, 255, 255)
+COR_AZUL = (108, 194, 236)
+COR_VERDE = (54, 182, 112)
+COR_VERMELHA = (255, 0, 0)
+COR_ROSA = (253, 227, 226)

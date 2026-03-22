@@ -3,7 +3,7 @@ import pygame
 import sons
 # Variáveis que contém a definição de cores
 from colisao import Colisao
-from cores import cor_azul, cor_verde, cor_branca, cor_vermelha, cor_rosa
+from cores import COR_AZUL, COR_VERDE, COR_BRANCA, COR_VERMELHA, COR_ROSA
 from fontes import fonte_perdeu
 
 
@@ -32,18 +32,15 @@ def main():
         Neste caso, ela ocupará 200 x 200 pixels
     '''
     sup_azul = pygame.Surface((200, 200))
-    sup_azul.fill(cor_azul)
+    sup_azul.fill(COR_AZUL)
 
     # Mesmo caso anterior, mas esta superfice será verde
     sup_verde = pygame.Surface((100, 100))
-    sup_verde.fill(cor_verde)
+    sup_verde.fill(COR_VERDE)
 
     ret = pygame.Rect(10, 10, 45, 45)
     ret2 = pygame.Rect(50, 50, 80, 50)
     colisao = Colisao(ret)
-
-    # Inicializando a lib de fontes
-    # pygame.font.init()
 
     # Mantém a tela aberta até clicar no botão de fechar. 
     while sair == False:
@@ -66,13 +63,13 @@ def main():
         ret.top -= ret.height / 2
 
         if colisao.verificar_colisao(ret2):
-            texto = fonte_perdeu.render('COLIDIU', 1, cor_vermelha)
+            texto = fonte_perdeu.render('COLIDIU', 1, COR_VERMELHA)
             tela.blit(texto, (150, 150))
             sons.get_explodir().play()
             colisao.voltar_para_posicao_anterior()
 
-        pygame.draw.rect(tela, cor_vermelha, ret)
-        pygame.draw.rect(tela, cor_rosa, ret2)
+        pygame.draw.rect(tela, COR_VERMELHA, ret)
+        pygame.draw.rect(tela, COR_ROSA, ret2)
 
         # Atualiza a tela
         pygame.display.update()
@@ -83,7 +80,7 @@ def main():
 
 def configura_tela(sup_azul, sup_verde, tela):
     # Define a cor de fundo da tela como branca
-    tela.fill(cor_branca)
+    tela.fill(COR_BRANCA)
 
     # Coloca as superfices na tela nas respectivas posições
     tela.blit(sup_azul, [50, 50])
