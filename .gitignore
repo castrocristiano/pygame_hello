@@ -1,3 +1,13 @@
 .vscode/settings.json
 
 .idea/**
+
+# Ignore all files in the build directory
+build/
+
+# Ignore all files in the venv directory
+venv/
+.venv/
+# Ignore all files in the __pycache__ directory
+__pycache__/
+.pytest_cache/
